@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+    <AssemblyName>BugFablesRPC</AssemblyName>
+    <Company>Moosky's Projects</Company>
+    <Description>Adds Discord RPC</Description>
+    <Version>1.1</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <DefineConstants>RPCDEBUG</DefineConstants>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+    <PackageReference Include="UnityEngine.Modules" Version="2018.4.12" IncludeAssets="compile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>libs\Assembly-CShrap.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="copy" AfterTargets="Build">
+    <Message Text="Copying" Importance="High" />
+  	<Copy SourceFiles="bin/Release/net35/BugFablesRPC.dll" DestinationFolder="G:\smb2\steamappssmb\steamapps\common\Bug Fables\BepInEx\plugins\BugFablesRPC"/>
+  </Target>
+  
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>
