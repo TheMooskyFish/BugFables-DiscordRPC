@@ -271,16 +271,6 @@ namespace RPCPlugin.Maps
         {"GoldenSMinigame", "whackaworm"},
         {"MetalIslandAuditorium","spycards"},
         };
-        //public static bool PerMapCheck(int id)
-        //{
-        //    var map = Enum.GetName(typeof(MainManager.Maps), id);
-        //    if (PerMapDict.TryGetValue(map, out var image))
-        //    {
-        //        PluginUtils.SetMapAndImageActivity(id, image);
-        //        return true;
-        //    }
-        //    return false;
-        //}
         public static string GetMapImage(int id)
         {
             var map = Enum.GetName(typeof(MainManager.Maps), id);

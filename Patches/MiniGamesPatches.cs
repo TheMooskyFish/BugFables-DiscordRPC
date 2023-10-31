@@ -13,7 +13,7 @@ namespace RPCPlugin.Patches
         private class CardGamePatch
         {
             [HarmonyPostfix]
-            [HarmonyPatch("BuildWindow")] //, int[] ___hp, int[] ___tp, Transform[,] ___huds
+            [HarmonyPatch("BuildWindow")]
             private static void BuildWindow(CardGame __instance, int ___windowid)
             {
                 if (___windowid == 10)
@@ -22,12 +22,6 @@ namespace RPCPlugin.Patches
                     PluginUtils.SetOverworldActivity();
 
                 }
-                //else if (___windowid == 1)
-                //{
-                //    if (___huds != null)
-                //        Controller.UpdateData($"Playing: Spy Cards", $"HP: {___hp[0]} | TP: {___tp[0]}", "spycards");
-                //}
-                //RPCPlugin.Logger.LogInfo(___windowid);
             }
             [HarmonyTranspiler]
             [HarmonyPatch("PullCard", MethodType.Enumerator)]
@@ -46,7 +40,6 @@ namespace RPCPlugin.Patches
             private static void StartCard()
             {
                 Controller.UpdateData($"Playing: Spy Cards", "HP: 5 | Round: 1", "spycards");
-                //__instance.StartCoroutine(CardGameScoreLoop(__instance));
             }
         }
         [HarmonyPatch(typeof(FlappyBee))]

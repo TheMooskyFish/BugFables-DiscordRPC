@@ -5,10 +5,6 @@ namespace RPCPlugin.Utils
 {
     public class PluginUtils
     {
-        //public static void SetMapAndImageActivity(int id)
-        //{
-        //    SetOverworldActivity(MapsClass.Maps[id], MainManager.instance.partylevel);
-        //}
         public static void SetOverworldActivity()
         {
             SetOverworldActivity(GetCurrentMap(), MainManager.instance.partylevel);
@@ -25,8 +21,7 @@ namespace RPCPlugin.Utils
         public static void UpdateCardRPC()
         {
             var cardGame = MainManager.instance.GetComponent<CardGame>();
-            var hp = Traverse.Create(cardGame).Field("hp").GetValue<int[]>()[0];
-            Controller.UpdateData($"Playing: Spy Cards", $"HP: {hp} | Round: {MainManager.instance.flagvar[6]}", "spycards");
+            Controller.UpdateData($"Playing: Spy Cards", $"HP: {cardGame.hp[0]} | Round: {MainManager.instance.flagvar[6]}", "spycards");
         }
     }
 }
