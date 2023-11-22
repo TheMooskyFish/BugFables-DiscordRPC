@@ -78,7 +78,12 @@ public class Controller : MonoBehaviour
             StartCoroutine(DiscordTimer());
         }
     }
-    IEnumerator DiscordTimer()
+    public void OnApplicationQuit()
+    {
+        RPCPlugin.Logger.LogInfo("Unloading Discord RPC.");
+        s_discordClient?.Dispose();
+    }
+    private IEnumerator DiscordTimer()
     {
         while (s_discordOffine)
         {
@@ -93,8 +98,8 @@ public class Controller : MonoBehaviour
             }
         }
     }
-    public static void UpdateData(string Details) => UpdateData(new Activity { Details = Details });
-    public static void UpdateData(string Details, string State, string Image = "icon") => UpdateData(new Activity { Details = Details, State = State, Assets = new ActivityAssets { LargeImage = Image } });
+    public static void UpdateData(string details) => UpdateData(new Activity { Details = details });
+    public static void UpdateData(string details, string state, string image = "icon") => UpdateData(new Activity { Details = details, State = state, Assets = new ActivityAssets { LargeImage = image } });
 
     private static void UpdateData(Activity activity)
     {
@@ -107,9 +112,9 @@ public class Controller : MonoBehaviour
                 activity.Timestamps.Start = (long)s_time;
                 s_discordClient.GetActivityManager().UpdateActivity(activity, (_) => { });
             }
-            catch (Exception Error)
+            catch (Exception error)
             {
-                RPCPlugin.Logger.LogError(Error);
+                RPCPlugin.Logger.LogError(error);
             };
         }
     }

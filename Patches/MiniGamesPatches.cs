@@ -20,12 +20,11 @@ namespace RPCPlugin.Patches
                 {
                     __instance.StopCoroutine("CardGameScoreLoop");
                     PluginUtils.SetOverworldActivity();
-
                 }
             }
             [HarmonyTranspiler]
             [HarmonyPatch("PullCard", MethodType.Enumerator)]
-            static IEnumerable<CodeInstruction> PullCardPatch(IEnumerable<CodeInstruction> instructions)
+            private static IEnumerable<CodeInstruction> PullCardPatch(IEnumerable<CodeInstruction> instructions)
             {
                 return new CodeMatcher(instructions)
                 .MatchForward(true,
@@ -75,9 +74,10 @@ namespace RPCPlugin.Patches
             }
             [HarmonyPostfix]
             [HarmonyPatch("OnTriggerEnter")]
-            private static void OnTriggerEnter()
+            private static void OnTriggerEnter(WackaWorm __instance, Collider other)
             {
-                Controller.UpdateData($"Playing: Whack-a-Worm", $"Score: {MainManager.instance.flagvar[1]}", "whackaworm");
+                if (!__instance.main && MainManager.player != null && MainManager.player.beemerang != null && other.transform == MainManager.player.beemerang.transform)
+                    Controller.UpdateData($"Playing: Whack-a-Worm", $"Score: {MainManager.instance.flagvar[1]}", "whackaworm");
             }
         }
         [HarmonyPatch(typeof(MainManager), nameof(MainManager.EndMiniGame))]
@@ -88,7 +88,6 @@ namespace RPCPlugin.Patches
                 Controller.Instance.StartCoroutine(Cleanup());
             }
         }
-
         private static IEnumerator ScoreLoop(Component miniGame, string name)
         {
             var score = AccessTools.Field(miniGame.GetType(), "score");
@@ -105,7 +104,6 @@ namespace RPCPlugin.Patches
                 yield return new WaitForSeconds(0.5f);
             }
         }
-
         private static IEnumerator Cleanup()
         {
             yield return new WaitForSeconds(2);
