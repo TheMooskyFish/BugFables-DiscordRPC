@@ -2,14 +2,12 @@ using UnityEngine;
 using Discord;
 using System;
 using System.Collections;
-using RPCPlugin.Maps;
 namespace RPCPlugin.RPCController;
 public class Controller : MonoBehaviour
 {
     private static double s_time = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
     private static Discord.Discord s_discordClient;
     public static Controller Instance;
-    public static MapsClass MapsClass = new();
     private static bool s_discordOffine;
     public void Start()
     {
@@ -45,21 +43,6 @@ public class Controller : MonoBehaviour
             return false;
         }
     }
-    //#if RPCDEBUG
-    //    public void Update()
-    //    {
-    //        if (Input.GetKeyDown(KeyCode.L))
-    //        {
-    //            MapsClass.LoadList();
-    //            UpdateData($"Area: {MapsClass.Maps[int.Parse(MainManager.map.name)]}", $"Rank: {MainManager.instance.partylevel}");
-    //            Text.ChangeData($"Area: {MapsClass.Maps[int.Parse(MainManager.map.name)]}", $"Rank: {MainManager.instance.partylevel}", Enum.GetName(typeof(MainManager.Maps), int.Parse(MainManager.map.name)));
-    //        }
-    //        if (Input.GetKeyDown(KeyCode.K))
-    //        {
-    //            MapsClass.SaveList();
-    //        }
-    //    }
-    //#endif
     public void LateUpdate()
     {
         try

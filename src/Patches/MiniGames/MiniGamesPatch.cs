@@ -1,46 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 using HarmonyLib;
 using RPCPlugin.RPCController;
 using RPCPlugin.Utils;
 using UnityEngine;
-namespace RPCPlugin.Patches
+namespace RPCPlugin.Patches.MiniGames
 {
-    class MiniGamesPatches
+    class MiniGamesPatch
     {
-        [HarmonyPatch(typeof(CardGame))]
-        private class CardGamePatch
-        {
-            [HarmonyPostfix]
-            [HarmonyPatch("BuildWindow")]
-            private static void BuildWindow(CardGame __instance, int ___windowid)
-            {
-                if (___windowid == 10)
-                {
-                    __instance.StopCoroutine("CardGameScoreLoop");
-                    PluginUtils.SetOverworldActivity();
-                }
-            }
-            [HarmonyTranspiler]
-            [HarmonyPatch("PullCard", MethodType.Enumerator)]
-            private static IEnumerable<CodeInstruction> PullCardPatch(IEnumerable<CodeInstruction> instructions)
-            {
-                return new CodeMatcher(instructions)
-                .MatchForward(true,
-                    new CodeMatch(OpCodes.Ldc_I4_S),
-                    new CodeMatch(OpCodes.Call),
-                    new CodeMatch(OpCodes.Stelem_I4),
-                    new CodeMatch(OpCodes.Stfld)
-                ).Advance(1).InsertAndAdvance(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(PluginUtils), nameof(PluginUtils.UpdateCardRPC)))).InstructionEnumeration();
-            }
-            [HarmonyPrefix]
-            [HarmonyPatch("StartCard")]
-            private static void StartCard()
-            {
-                Controller.UpdateData($"Playing: Spy Cards", "HP: 5 | Round: 1", "spycards");
-            }
-        }
         [HarmonyPatch(typeof(FlappyBee))]
         private class FlappyBeePatch
         {
@@ -88,18 +54,18 @@ namespace RPCPlugin.Patches
                 Controller.Instance.StartCoroutine(Cleanup());
             }
         }
-        private static IEnumerator ScoreLoop(Component miniGame, string name)
+        private static IEnumerator ScoreLoop(Component minigame, string name)
         {
-            var score = AccessTools.Field(miniGame.GetType(), "score");
-            var oldScore = 0;
-            var miniGameName = miniGame.GetType().Name.ToLower();
+            var score = AccessTools.Field(minigame.GetType(), "score");
+            var oldscore = 0;
+            var minigamename = minigame.GetType().Name.ToLower();
             while (true)
             {
-                if (oldScore != (int)score.GetValue(miniGame))
+                if (oldscore != (int)score.GetValue(minigame))
                 {
-                    var newScore = (int)score.GetValue(miniGame);
-                    Controller.UpdateData($"Playing: {name}", $"Score: {newScore}", miniGameName);
-                    oldScore = newScore;
+                    var newscore = (int)score.GetValue(minigame);
+                    Controller.UpdateData($"Playing: {name}", $"Score: {newscore}", minigamename);
+                    oldscore = newscore;
                 }
                 yield return new WaitForSeconds(0.5f);
             }

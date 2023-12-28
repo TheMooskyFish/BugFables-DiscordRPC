@@ -24,7 +24,7 @@ namespace RPCPlugin.Maps
             "Explorers' Association", //BugariaOutskirtsOutsideCity
             "Outside Snakemouth Den Corridor", //BugariaOutskitsSnakemouthCorridor1
             "Outside Snakemouth Den Corridor", //BugariaOutskirtsSnakemouthCorridor2
-            "Snakemouth Den Undergrond Door", //SnakemouthUndergrondDoor
+            "Snakemouth Den Underground Door", //SnakemouthUndergrondDoor
             "Snakemouth Den Mushroom Pit", //SnakemouthMushroomPit
             "Snakemouth Den Treasure", //SnakemouthTreasureRoom
             "Snakemouth Den Underground", //SnakemouthUndergroundRightA
@@ -120,7 +120,7 @@ namespace RPCPlugin.Maps
             "Lost Sands Scorpion", //DesertScorpion
             "Lost Sands Eastmost", //DesertEastmost
             "Whack-a-Worm Area", //GoldenSMinigame
-            "Blank", //Blank
+            "Unknown", //Blank
             "Sand Castle Entrance", //SandCastleEntrance
             "Sand Castle Slide Puzzle", //SandCastleSlidePuzzle
             "Sand Castle Statue Room", //SandCastleStatueRoom
@@ -251,23 +251,11 @@ namespace RPCPlugin.Maps
             "Wasp Kingdom Drill Room", //WaspKingdomDrillRoom
             "Giant's Lair Stove", //GiantLairBeforeBoss
             "Giant's Lair Cabinets"}; //GiantLairBeforeBoss
-        //#if RPCDEBUG
-        //        public bool LoadList()
-        //        {
-        //            Maps = File.ReadAllLines("maps.txt");
-        //            return true;
-        //        }
-        //        public bool SaveList()
-        //        {
-        //            File.WriteAllLines("maps.txt", Maps);
-        //            return true;
-        //        }
-        //#endif
         public static Dictionary<string, string> PerMapDict = new Dictionary<string, string>
         {
-        {"MetalLake", "submarine"},
-        {"GoldenSMinigame", "whackaworm"},
-        {"MetalIslandAuditorium","spycards"},
+            {"MetalLake", "submarine"},
+            {"GoldenSMinigame", "whackaworm"},
+            {"MetalIslandAuditorium","spycards"},
         };
         public static string GetMapImage(int id)
         {

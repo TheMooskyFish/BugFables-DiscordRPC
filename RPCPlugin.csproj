@@ -25,7 +25,7 @@
 
   <Target Name="copy" AfterTargets="Build">
     <Message Text="Copying" Importance="High" />
-  	<Copy SourceFiles="bin/Release/net35/BugFablesRPC.dll" DestinationFolder="G:\smb2\steamappssmb\steamapps\common\Bug Fables\BepInEx\plugins\BugFablesRPC"/>
+  	<Copy SourceFiles="bin/Release/net35/BugFablesRPC.dll" DestinationFolder="$(BUGFABLES)\BepInEx\plugins\BugFablesRPC"/>
   </Target>
   
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">

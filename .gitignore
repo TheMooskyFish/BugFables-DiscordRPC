@@ -132,5 +132,8 @@ $RECYCLE.BIN/
 
 _NCrunch*
 
+# RPC ASSETS
+RPCAssets
+
 # BUG FABLES FILES
 libs/Assembly-CSharp.dll

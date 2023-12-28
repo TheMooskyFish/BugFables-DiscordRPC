@@ -28,7 +28,7 @@ namespace RPCPlugin.Patches
                 {
                     new GameObject("RPCController").AddComponent<Controller>();
                 }
-                else if (GameObject.Find("RPCController"))
+                else
                 {
                     Controller.UpdateData("Main Menu");
                 }
