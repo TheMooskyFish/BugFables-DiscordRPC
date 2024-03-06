@@ -135,5 +135,5 @@ _NCrunch*
 # RPC ASSETS
 RPCAssets
 
-# BUG FABLES FILES
-libs/Assembly-CSharp.dll
+# vs folder
+.vs

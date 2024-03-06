@@ -23,8 +23,8 @@
     </Reference>
   </ItemGroup>
 
-  <Target Name="copy" AfterTargets="Build">
-    <Message Text="Copying" Importance="High" />
+  <Target Name="copy" AfterTargets="Build" Condition="exists('$(BUGFABLES)')">
+    <Message Text="Copying to Game's Plugins Folder" Importance="High"/>
   	<Copy SourceFiles="bin/Release/net35/BugFablesRPC.dll" DestinationFolder="$(BUGFABLES)\BepInEx\plugins\BugFablesRPC"/>
   </Target>
   
