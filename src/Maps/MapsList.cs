@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 namespace RPCPlugin.Maps
 {
     public class MapsClass
     {
-        public static string[] Maps = new string[] {
+        public static string[] Maps = [
             "Test Room", //TestRoom
             "Near Snakemouth Gate", //NearSnakemouth
             "Outside Snakemouth Den", //OutsideSnakemouth
@@ -250,7 +250,8 @@ namespace RPCPlugin.Maps
             "Ant Kingdom Throne", //BugariaEndThrone
             "Wasp Kingdom Drill Room", //WaspKingdomDrillRoom
             "Giant's Lair Stove", //GiantLairBeforeBoss
-            "Giant's Lair Cabinets"}; //GiantLairBeforeBoss
+            "Giant's Lair Cabinets" //GiantLairBeforeBoss
+        ];
         public static Dictionary<string, string> PerMapDict = new Dictionary<string, string>
         {
             {"MetalLake", "submarine"},

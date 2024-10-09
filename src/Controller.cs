@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Discord;
 using System;
 using System.Collections;
@@ -91,7 +91,7 @@ public class Controller : MonoBehaviour
             try
             {
                 activity.Assets.LargeImage ??= "icon";
-                activity.Assets.LargeText = RPCPlugin.Version;
+                activity.Assets.LargeText = $"Mod: {RPCPlugin.Version} Game: {Application.version}";
                 activity.Timestamps.Start = (long)s_time;
                 s_discordClient.GetActivityManager().UpdateActivity(activity, (_) => { });
             }

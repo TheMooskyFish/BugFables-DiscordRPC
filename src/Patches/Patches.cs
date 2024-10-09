@@ -41,7 +41,7 @@ namespace RPCPlugin.Patches
             static void StartBattlePatch()
             {
                 var map = MapsClass.Maps[int.Parse(MainManager.map.name)];
-                Controller.UpdateData($"In Battle: {map}", $"Rank: {MainManager.instance.partylevel}", MapsClass.GetMapImage(int.Parse(MainManager.map.name)));
+                Controller.UpdateData($"In Battle: {map}", $"Rank: {MainManager.instance.partylevel}", "battle");
             }
             [HarmonyPatch(nameof(BattleControl.ReturnToOverworld))]
             [HarmonyPostfix]
