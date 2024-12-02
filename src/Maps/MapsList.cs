@@ -252,20 +252,21 @@ namespace RPCPlugin.Maps
             "Giant's Lair Stove", //GiantLairBeforeBoss
             "Giant's Lair Cabinets" //GiantLairBeforeBoss
         ];
-        public static Dictionary<string, string> PerMapDict = new Dictionary<string, string>
+        private static Dictionary<string, string> PerMapDict = new()
         {
             {"MetalLake", "submarine"},
             {"GoldenSMinigame", "whackaworm"},
             {"MetalIslandAuditorium","spycards"},
+            {"FishingVillage","fishing"},
         };
         public static string GetMapImage(int id)
         {
             var map = Enum.GetName(typeof(MainManager.Maps), id);
-            if (PerMapDict.TryGetValue(map, out var image))
+            if (map != null)
             {
-                return image;
+                return PerMapDict.TryGetValue(map, out var image) ? image : "icon";
             }
             return "icon";
         }
-    }
+    }   
 }

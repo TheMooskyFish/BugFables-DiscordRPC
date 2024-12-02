@@ -5,7 +5,7 @@ using RPCPlugin.Utils;
 using UnityEngine;
 namespace RPCPlugin.Patches.MiniGames
 {
-    class MiniGamesPatch
+    internal class MiniGamesPatch
     {
         [HarmonyPatch(typeof(FlappyBee))]
         private class FlappyBeePatch

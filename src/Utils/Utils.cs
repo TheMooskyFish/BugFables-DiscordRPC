@@ -13,7 +13,7 @@ namespace RPCPlugin.Utils
             var image = MapsClass.GetMapImage(int.Parse(MainManager.map.name));
             Controller.UpdateData($"Area: {area}", $"Rank: {rank}", image);
         }
-        public static string GetCurrentMap()
+        private static string GetCurrentMap()
         {
             return MapsClass.Maps[int.Parse(MainManager.map.name)];
         }

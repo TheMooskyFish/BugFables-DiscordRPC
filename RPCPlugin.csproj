@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net35</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <AssemblyName>BugFablesRPC</AssemblyName>
     <Company>Moosky's Projects</Company>
     <Description>Adds Discord RPC</Description>
-    <Version>1.1</Version>
+    <Version>1.1.1</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <DefineConstants>NORPCDEBUG</DefineConstants>
